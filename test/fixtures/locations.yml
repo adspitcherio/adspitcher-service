@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  latitude   :integer
+#  longitude  :integer
+#  type       :string(255)
+#  parent_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  type: 
+  parent_id: 1
+
+two:
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  type: 
+  parent_id: 1

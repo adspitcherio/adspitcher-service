@@ -1,0 +1,10 @@
+development:
+  adapter: jdbcpostgresql
+  encoding: unicode
+  database: adspitcher_development
+  pool: 20
+  username: deploy
+  password: mig33gothic
+  host: 127.0.0.1
+  port: 5432
+
