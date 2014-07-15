@@ -1,4 +1,4 @@
-class StoresController < ApplicationController
+class V1::StoresController < ApplicationController
   include CRUDActions
 
   def api_resource

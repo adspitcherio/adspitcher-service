@@ -1,4 +1,4 @@
-class LocationsController < ApplicationController
+class V1::LocationsController < ApplicationController
   include CRUDActions
 
   def api_resource
