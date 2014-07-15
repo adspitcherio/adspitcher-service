@@ -12,7 +12,7 @@ module CRUDActions
   end
 
   def update
-    render json: api_resource.update(params[:id], params.require(api_resource_name.pluralize).permit(permitted_attributes))
+    render json: api_resource.update(params[:id], params.require(api_resource_name).permit(permitted_attributes))
   end
 
   def destroy
