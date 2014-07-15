@@ -1,22 +1,22 @@
 module CRUDActions
   def index
-    respond_with api_resource.all
+    render json: api_resource.all
   end
 
   def show
-    respond_with api_resource.find(params[:id])
+    render json: api_resource.find(params[:id])
   end
 
   def create
-    respond_with api_resource.create(params[api_resource_name])
+    render json: api_resource.create(params.require(api_resource_name).permit(permitted_attributes))
   end
 
   def update
-    respond_with api_resource.update(params[:id], params[api_resource_name.pluralize])
+    render json: api_resource.update(params[:id], params.require(api_resource_name.pluralize).permit(permitted_attributes))
   end
 
   def destroy
-    respond_with api_resource.destroy(params[:id])
+    render json: api_resource.destroy(params[:id])
   end
 
   def api_resource_name
