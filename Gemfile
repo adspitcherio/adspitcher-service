@@ -9,6 +9,8 @@ gem 'activerecord-jdbcpostgresql-adapter'
 gem 'rmagick4j'
 gem 'paperclip'
 gem 'annotate'
+gem 'foreman'
+gem 'puma'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt'
