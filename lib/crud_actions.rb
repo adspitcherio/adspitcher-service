@@ -8,11 +8,22 @@ module CRUDActions
   end
 
   def create
-    render json: api_resource.create(params.require(api_resource_name).permit(permitted_attributes))
+    resource = api_resource.create(params.require(api_resource_name).permit(permitted_attributes))
+    if resource.errors.blank?
+      render json: resource
+    else
+      render json: resource.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    render json: api_resource.update(params[:id], params.require(api_resource_name).permit(permitted_attributes))
+    resource = api_resource.update(params[:id], params.require(api_resource_name).permit(permitted_attributes))
+
+    if resource.errors.blank?
+    render json: resource
+    else
+      render json: resource.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
