@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/zoocasa/activerecord-postgresql-extensions.git
+  revision: 8e4a76f88d3af08c40dfbe8947d3537792a94362
+  branch: rails-4
+  specs:
+    activerecord-postgresql-extensions (1.0.0.dev)
+      activerecord (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,6 +44,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.7)
     bcrypt (3.1.7-java)
     builder (3.2.2)
     climate_control (0.0.3)
@@ -52,6 +61,7 @@ GEM
     hike (1.2.3)
     i18n (0.6.11)
     jdbc-postgres (9.3.1101)
+    json (1.8.1)
     json (1.8.1-java)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -65,6 +75,8 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     polyglot (0.3.5)
+    puma (2.9.0)
+      rack (>= 1.1, < 2.0)
     puma (2.9.0-java)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -101,6 +113,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.19.1)
+    thread_safe (0.3.4)
     thread_safe (0.3.4-java)
     tilt (1.4.1)
     treetop (1.4.15)
@@ -114,6 +127,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
+  activerecord-postgresql-extensions!
   annotate
   bcrypt
   foreman
