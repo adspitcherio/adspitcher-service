@@ -16,4 +16,5 @@
 #
 
 class Brand < User
+  self.table_name = :brands
 end

@@ -12,6 +12,7 @@ gem 'paperclip'
 gem 'annotate'
 gem 'foreman'
 gem 'puma'
+gem 'doorkeeper'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt'

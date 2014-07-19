@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper defaults: {format: :json}
   namespace :v1, defaults: {format: :json} do
     resources :locations, defaults: {format: :json}
     resources :stores, defaults: {format: :json}
