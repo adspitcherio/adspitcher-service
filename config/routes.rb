@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   use_doorkeeper defaults: {format: :json}
   namespace :v1, defaults: {format: :json} do
-    resources :locations, defaults: {format: :json}
-    resources :stores, defaults: {format: :json}
+    resources :locations
+    resources :stores
+    resources :brands
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
