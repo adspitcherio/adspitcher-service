@@ -6,11 +6,13 @@ gem 'rails', '4.1.4'
 gem 'rails-api'
 gem 'spring', :group => :development
 gem 'activerecord-jdbcpostgresql-adapter'
+gem 'activerecord-postgresql-extensions', git: 'https://github.com/zoocasa/activerecord-postgresql-extensions.git', branch: 'rails-4'
 gem 'rmagick4j'
 gem 'paperclip'
 gem 'annotate'
 gem 'foreman'
 gem 'puma'
+gem 'doorkeeper'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt'
