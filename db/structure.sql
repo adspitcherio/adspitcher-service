@@ -79,6 +79,40 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 
 
 --
+-- Name: consumers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE consumers (
+    id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    credits double precision,
+    current_location_latitude numeric(10,0),
+    current_location_longitude numeric(10,0)
+)
+INHERITS (users);
+
+
+--
+-- Name: consumers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE consumers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: consumers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE consumers_id_seq OWNED BY consumers.id;
+
+
+--
 -- Name: locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -289,6 +323,13 @@ ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY consumers ALTER COLUMN id SET DEFAULT nextval('consumers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
 
 
@@ -349,6 +390,30 @@ ALTER TABLE ONLY brands
 
 ALTER TABLE ONLY brands
     ADD CONSTRAINT brands_username_key UNIQUE (username);
+
+
+--
+-- Name: consumers_email_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY consumers
+    ADD CONSTRAINT consumers_email_key UNIQUE (email);
+
+
+--
+-- Name: consumers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY consumers
+    ADD CONSTRAINT consumers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: consumers_username_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY consumers
+    ADD CONSTRAINT consumers_username_key UNIQUE (username);
 
 
 --
@@ -488,4 +553,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140718101708');
 INSERT INTO schema_migrations (version) VALUES ('20140718105554');
 
 INSERT INTO schema_migrations (version) VALUES ('20140718132119');
+
+INSERT INTO schema_migrations (version) VALUES ('20140722061453');
 
