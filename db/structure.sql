@@ -45,11 +45,30 @@ CREATE TABLE users (
 
 
 --
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
 -- Name: brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE brands (
-    id integer,
+    id integer DEFAULT nextval('users_id_seq'::regclass),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     rating double precision,
@@ -83,7 +102,7 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 --
 
 CREATE TABLE consumers (
-    id integer,
+    id integer DEFAULT nextval('users_id_seq'::regclass),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     credits double precision,
@@ -291,39 +310,6 @@ CREATE SEQUENCE stores_id_seq
 --
 
 ALTER SEQUENCE stores_id_seq OWNED BY stores.id;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY consumers ALTER COLUMN id SET DEFAULT nextval('consumers_id_seq'::regclass);
 
 
 --
@@ -555,4 +541,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140718105554');
 INSERT INTO schema_migrations (version) VALUES ('20140718132119');
 
 INSERT INTO schema_migrations (version) VALUES ('20140722061453');
+
+INSERT INTO schema_migrations (version) VALUES ('20140722063309');
 
