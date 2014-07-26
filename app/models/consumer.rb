@@ -17,4 +17,17 @@
 
 class Consumer < User
   self.table_name = :consumers
+  has_many :reviews, foreign_key: :posted_by_id
+
+  has_and_belongs_to_many :preferred_locations,
+                          join_table: :consumer_preferred_locations,
+                          class_name: Location.name
+
+  has_and_belongs_to_many :preferred_brands,
+                          join_table: :consumer_preferred_brands,
+                          class_name: Brand.name
+
+  has_and_belongs_to_many :preferred_categories,
+                          join_table: :consumer_preferred_categories,
+                          class_name: Category.name
 end

@@ -98,6 +98,127 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 
 
 --
+-- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: consumer_preferred_brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE consumer_preferred_brands (
+    id integer NOT NULL,
+    consumer_id integer,
+    brand_id integer
+);
+
+
+--
+-- Name: consumer_preferred_brands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE consumer_preferred_brands_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: consumer_preferred_brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE consumer_preferred_brands_id_seq OWNED BY consumer_preferred_brands.id;
+
+
+--
+-- Name: consumer_preferred_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE consumer_preferred_categories (
+    id integer NOT NULL,
+    consumer_id integer,
+    category_id integer
+);
+
+
+--
+-- Name: consumer_preferred_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE consumer_preferred_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: consumer_preferred_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE consumer_preferred_categories_id_seq OWNED BY consumer_preferred_categories.id;
+
+
+--
+-- Name: consumer_preferred_locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE consumer_preferred_locations (
+    id integer NOT NULL,
+    consumer_id integer,
+    location_id integer
+);
+
+
+--
+-- Name: consumer_preferred_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE consumer_preferred_locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: consumer_preferred_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE consumer_preferred_locations_id_seq OWNED BY consumer_preferred_locations.id;
+
+
+--
 -- Name: consumers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -273,6 +394,38 @@ ALTER SEQUENCE oauth_applications_id_seq OWNED BY oauth_applications.id;
 
 
 --
+-- Name: reviews; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE reviews (
+    id integer NOT NULL,
+    body text NOT NULL,
+    posted_by_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE reviews_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE reviews_id_seq OWNED BY reviews.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -316,6 +469,34 @@ ALTER SEQUENCE stores_id_seq OWNED BY stores.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_brands ALTER COLUMN id SET DEFAULT nextval('consumer_preferred_brands_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_categories ALTER COLUMN id SET DEFAULT nextval('consumer_preferred_categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_locations ALTER COLUMN id SET DEFAULT nextval('consumer_preferred_locations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
 
 
@@ -338,6 +519,13 @@ ALTER TABLE ONLY oauth_access_tokens ALTER COLUMN id SET DEFAULT nextval('oauth_
 --
 
 ALTER TABLE ONLY oauth_applications ALTER COLUMN id SET DEFAULT nextval('oauth_applications_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::regclass);
 
 
 --
@@ -376,6 +564,38 @@ ALTER TABLE ONLY brands
 
 ALTER TABLE ONLY brands
     ADD CONSTRAINT brands_username_key UNIQUE (username);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: consumer_preferred_brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY consumer_preferred_brands
+    ADD CONSTRAINT consumer_preferred_brands_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: consumer_preferred_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY consumer_preferred_categories
+    ADD CONSTRAINT consumer_preferred_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: consumer_preferred_locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY consumer_preferred_locations
+    ADD CONSTRAINT consumer_preferred_locations_pkey PRIMARY KEY (id);
 
 
 --
@@ -432,6 +652,14 @@ ALTER TABLE ONLY oauth_access_tokens
 
 ALTER TABLE ONLY oauth_applications
     ADD CONSTRAINT oauth_applications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT reviews_pkey PRIMARY KEY (id);
 
 
 --
@@ -523,6 +751,62 @@ ALTER TABLE ONLY brands
 
 
 --
+-- Name: consumer_preferred_brands_brand_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_brands
+    ADD CONSTRAINT consumer_preferred_brands_brand_id_fkey FOREIGN KEY (brand_id) REFERENCES brands(id);
+
+
+--
+-- Name: consumer_preferred_brands_consumer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_brands
+    ADD CONSTRAINT consumer_preferred_brands_consumer_id_fkey FOREIGN KEY (consumer_id) REFERENCES consumers(id);
+
+
+--
+-- Name: consumer_preferred_categories_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_categories
+    ADD CONSTRAINT consumer_preferred_categories_category_id_fkey FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
+-- Name: consumer_preferred_categories_consumer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_categories
+    ADD CONSTRAINT consumer_preferred_categories_consumer_id_fkey FOREIGN KEY (consumer_id) REFERENCES consumers(id);
+
+
+--
+-- Name: consumer_preferred_locations_consumer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_locations
+    ADD CONSTRAINT consumer_preferred_locations_consumer_id_fkey FOREIGN KEY (consumer_id) REFERENCES consumers(id);
+
+
+--
+-- Name: consumer_preferred_locations_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY consumer_preferred_locations
+    ADD CONSTRAINT consumer_preferred_locations_location_id_fkey FOREIGN KEY (location_id) REFERENCES locations(id);
+
+
+--
+-- Name: reviews_posted_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY reviews
+    ADD CONSTRAINT reviews_posted_by_id_fkey FOREIGN KEY (posted_by_id) REFERENCES consumers(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -543,4 +827,10 @@ INSERT INTO schema_migrations (version) VALUES ('20140718132119');
 INSERT INTO schema_migrations (version) VALUES ('20140722061453');
 
 INSERT INTO schema_migrations (version) VALUES ('20140722063309');
+
+INSERT INTO schema_migrations (version) VALUES ('20140725010732');
+
+INSERT INTO schema_migrations (version) VALUES ('20140726110550');
+
+INSERT INTO schema_migrations (version) VALUES ('20140726111341');
 
