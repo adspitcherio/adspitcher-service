@@ -1,10 +1,10 @@
 module CRUDActions
   def index
-    render json: api_resource.all
+    render json: api_resource.where(params[:query_options]).all.to_json(include: params[:include])
   end
 
   def show
-    render json: api_resource.find(params[:id])
+    render json: api_resource.find(params[:id]).to_json(params[:include])
   end
 
   def create
