@@ -4,7 +4,19 @@ Rails.application.routes.draw do
     resources :locations
     resources :stores
     resources :brands
-    resources :consumers
+    resources :consumers do
+      resources :preferred_locations,
+                controller: "consumers/preferred_locations",
+                only: [:create, :index, :show]
+
+      resources :preferred_brands,
+                controller: "consumers/preferred_brands",
+                only: [:create, :index, :show]
+
+      resources :preferred_categories,
+                controller: "consumers/preferred_categories",
+                only: [:create, :index, :show]
+    end
     resources :categories
   end
   # The priority is based upon order of creation: first created -> highest priority.
