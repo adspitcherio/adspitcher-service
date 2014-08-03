@@ -402,7 +402,8 @@ CREATE TABLE reviews (
     body text NOT NULL,
     posted_by_id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    brand_id integer
 );
 
 
@@ -833,4 +834,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140725010732');
 INSERT INTO schema_migrations (version) VALUES ('20140726110550');
 
 INSERT INTO schema_migrations (version) VALUES ('20140726111341');
+
+INSERT INTO schema_migrations (version) VALUES ('20140803141730');
 

@@ -17,4 +17,6 @@
 
 class Brand < User
   self.table_name = :brands
+
+  has_many :reviews
 end

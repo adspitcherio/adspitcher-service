@@ -4,7 +4,7 @@ module CRUDActions
   end
 
   def show
-    render json: api_resource.find(params[:id]).to_json(params[:include])
+    render json: api_resource.find(params[:id]).to_json(include: params[:include])
   end
 
   def create

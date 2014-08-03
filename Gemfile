@@ -13,6 +13,7 @@ gem 'annotate'
 gem 'foreman'
 gem 'puma'
 gem 'doorkeeper'
+gem 'exception_notification'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt'

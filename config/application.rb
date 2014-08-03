@@ -27,5 +27,11 @@ module Adspitcher
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.active_record.schema_format = :sql
+    config.middleware.use ExceptionNotification::Rack,
+      email: {
+      email_prefix: '[AdsPitcher-Error]',
+      sender_address: "[#{Rails.env}]Application Error <errors@adspitcher.com>",
+      exception_recipients: %w{nikhil@lanjewar.com}
+    } unless Rails.env.development?
   end
 end
