@@ -7,6 +7,7 @@
 #  posted_by_id :integer          not null
 #  created_at   :datetime
 #  updated_at   :datetime
+#  brand_id     :integer
 #
 
 require 'test_helper'

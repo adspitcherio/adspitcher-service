@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :locations
     resources :stores
     resources :brands
+    resources :reviews
     resources :consumers do
       resources :preferred_locations,
                 controller: "consumers/preferred_locations",
