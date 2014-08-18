@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: offers
+#
+#  id              :integer          not null, primary key
+#  description     :text
+#  starts_on       :date
+#  ends_on         :date
+#  location_id     :integer
+#  up_vote_count   :integer          default(0)
+#  down_vote_count :integer          default(0)
+#  posted_by_id    :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  starts_on: 2014-08-18
+  ends_on: 2014-08-18
+  location_id: 1
+  up_vote_count: 1
+  down_vote_count: 1
+  posted_by_id: 1
+
+two:
+  description: MyText
+  starts_on: 2014-08-18
+  ends_on: 2014-08-18
+  location_id: 1
+  up_vote_count: 1
+  down_vote_count: 1
+  posted_by_id: 1
