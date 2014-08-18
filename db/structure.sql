@@ -394,6 +394,43 @@ ALTER SEQUENCE oauth_applications_id_seq OWNED BY oauth_applications.id;
 
 
 --
+-- Name: offers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE offers (
+    id integer NOT NULL,
+    description text,
+    starts_on date,
+    ends_on date,
+    location_id integer,
+    up_vote_count integer DEFAULT 0,
+    down_vote_count integer DEFAULT 0,
+    posted_by_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: offers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE offers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: offers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE offers_id_seq OWNED BY offers.id;
+
+
+--
 -- Name: reviews; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -520,6 +557,13 @@ ALTER TABLE ONLY oauth_access_tokens ALTER COLUMN id SET DEFAULT nextval('oauth_
 --
 
 ALTER TABLE ONLY oauth_applications ALTER COLUMN id SET DEFAULT nextval('oauth_applications_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY offers ALTER COLUMN id SET DEFAULT nextval('offers_id_seq'::regclass);
 
 
 --
@@ -653,6 +697,14 @@ ALTER TABLE ONLY oauth_access_tokens
 
 ALTER TABLE ONLY oauth_applications
     ADD CONSTRAINT oauth_applications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: offers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY offers
+    ADD CONSTRAINT offers_pkey PRIMARY KEY (id);
 
 
 --
@@ -800,6 +852,22 @@ ALTER TABLE ONLY consumer_preferred_locations
 
 
 --
+-- Name: offers_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY offers
+    ADD CONSTRAINT offers_location_id_fkey FOREIGN KEY (location_id) REFERENCES locations(id);
+
+
+--
+-- Name: offers_posted_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY offers
+    ADD CONSTRAINT offers_posted_by_id_fkey FOREIGN KEY (posted_by_id) REFERENCES brands(id);
+
+
+--
 -- Name: reviews_posted_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -836,4 +904,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140726110550');
 INSERT INTO schema_migrations (version) VALUES ('20140726111341');
 
 INSERT INTO schema_migrations (version) VALUES ('20140803141730');
+
+INSERT INTO schema_migrations (version) VALUES ('20140818131330');
 
